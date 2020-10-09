@@ -1,11 +1,25 @@
 {
-  "posts": [
+  "contacts": [
     {
-      "id": 1,
-      "title": "hello"
+      "firstName": "Василий",
+      "secondName": "Воришка",
+      "phone": "79090909009",
+      "email": "purpurr@gmail.com",
+      "id": 1
+    },
+    {
+      "firstName": "Матрена",
+      "secondName": "Пушистая",
+      "phone": "79994994949",
+      "email": "matrena_cat@gmail.com",
+      "id": 2
     }
   ],
-  "profile": {
-    "name": "typicode"
-  }
+  "users": [
+    {
+      "id": 1,
+      "login": "test",
+      "password": "test"
+    }
+  ]
 }
