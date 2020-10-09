@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
-import styled from 'styled-components'
+import styled from 'styled-components/macro'
+import { useMutation, useQueryCache } from 'react-query'
+import CloseIcon from '@material-ui/icons/Close'
 import { Image } from './Image'
 import { Input } from './Input'
 import { Button } from './Button'
-import CloseIcon from '@material-ui/icons/Close'
-import { useMutation, useQueryCache } from 'react-query'
-import { addNewContact, deleteContact, updateContact } from '../utils'
+import { deleteContact, updateContact } from '../utils'
 
 const Content = styled.div`
   width: 100%;
@@ -20,6 +20,9 @@ const Wrapper = styled.div`
   align-items: center;
   justify-content: space-around;
   width: 100%;
+  @media (max-width: 800px) {
+    flex-wrap: wrap;
+  }
 `
 const ButtonWrapper = styled.div`
   display: flex;
@@ -30,7 +33,9 @@ const ButtonWrapper = styled.div`
 const StyledForm = styled.div`
   display: flex;
   align-items: center;
-  flex-wrap: wrap;
+  @media (max-width: 800px) {
+    flex-wrap: wrap;
+  }
 `
 
 export const ContactCard = ({ firstName, secondName, phone, email, id }) => {

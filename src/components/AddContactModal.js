@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import styled from 'styled-components'
 import {
   Dialog,
   DialogTitle,
@@ -7,19 +6,17 @@ import {
   DialogContentText,
   DialogActions,
 } from '@material-ui/core'
+import { useMutation, useQueryCache } from 'react-query'
 import { Button } from './Button'
 import { Input } from './Input'
-import { useMutation, useQueryCache } from 'react-query'
 import { addNewContact } from '../utils'
 
 export const AddContactModal = ({ isModalOpen, handleIsModalOpen }) => {
   const [values, setValues] = useState({ firstName: '', secondName: '', phone: '', email: '' })
   const cache = useQueryCache()
   const [mutate] = useMutation(addNewContact, {
-    onSuccess: (result) => {
-      if (!!result.length) {
-        cache.refetchQueries('contacts')
-      }
+    onSuccess: () => {
+      cache.refetchQueries('contacts')
     },
   })
 

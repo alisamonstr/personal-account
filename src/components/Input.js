@@ -1,11 +1,10 @@
 import React from 'react'
-import styled from 'styled-components'
-import TextField from '@material-ui/core/TextField'
-import InputBase from '@material-ui/core/InputBase'
+import styled from 'styled-components/macro'
+import { TextField, InputBase } from '@material-ui/core'
 
 const StyledInput = styled(TextField)`
   margin-right: 20px;
-  width: 300px;
+  margin-bottom: 10px;
 `
 const StyledLabel = styled.div`
   font-size: 12px;
@@ -13,6 +12,9 @@ const StyledLabel = styled.div`
 const StyledInputBase = styled(InputBase)`
   margin-right: 20px;
   margin-bottom: 10px;
+  &.Mui-disabled {
+    color: black;
+  }
 `
 
 export const Input = ({ id, value, label, active, onChange, ...props }) => {
@@ -31,7 +33,6 @@ export const Input = ({ id, value, label, active, onChange, ...props }) => {
       label={label}
       defaultValue={value}
       onChange={onChange}
-      // variant={variant}
       {...props}
     />
   )

@@ -11,8 +11,15 @@
       "firstName": "Матрена",
       "secondName": "Пушистая",
       "phone": "79994994949",
-      "email": "matrena_cat@gmail.com",
+      "email": "matrena@gmail.com",
       "id": 2
+    },
+    {
+      "firstName": "Борис",
+      "secondName": "Иванович",
+      "phone": "79222222229",
+      "email": "cat_official@gmail.com",
+      "id": 3
     }
   ],
   "users": [

@@ -1,26 +1,16 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import './index.css'
 import App from './App'
 import * as serviceWorker from './serviceWorker'
+import { QueryCache, ReactQueryCacheProvider } from 'react-query'
 import { ThemeProvider, createMuiTheme, CssBaseline } from '@material-ui/core'
-import {
-  useQuery,
-  useMutation,
-  useQueryCache,
-  QueryCache,
-  ReactQueryCacheProvider,
-} from 'react-query'
 import { AuthProvider } from './contexts'
+import { BrowserRouter as Router } from 'react-router-dom'
 
 const theme = createMuiTheme({
   palette: {
     primary: {
       main: '#FFD700',
-    },
-    text: {
-      disabled: '#000000',
-      secondary: '#000000',
     },
   },
 })
@@ -29,14 +19,16 @@ const queryCache = new QueryCache()
 
 ReactDOM.render(
   <React.StrictMode>
-    <ThemeProvider theme={theme}>
-      <AuthProvider>
-        <ReactQueryCacheProvider queryCache={queryCache}>
-          <CssBaseline />
-          <App />
-        </ReactQueryCacheProvider>
-      </AuthProvider>
-    </ThemeProvider>
+    <Router>
+      <ThemeProvider theme={theme}>
+        <AuthProvider>
+          <ReactQueryCacheProvider queryCache={queryCache}>
+            <CssBaseline />
+            <App />
+          </ReactQueryCacheProvider>
+        </AuthProvider>
+      </ThemeProvider>
+    </Router>
   </React.StrictMode>,
   document.getElementById('root'),
 )

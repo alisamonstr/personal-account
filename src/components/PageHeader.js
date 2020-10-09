@@ -1,10 +1,8 @@
 import React, { useContext } from 'react'
-import styled from 'styled-components'
-import { Button } from './Button'
-import Container from '@material-ui/core/Container'
+import styled from 'styled-components/macro'
+import { Container, Paper, Box } from '@material-ui/core'
 import ExitToAppRoundedIcon from '@material-ui/icons/ExitToAppRounded'
-import Box from '@material-ui/core/Box'
-import { Paper } from '@material-ui/core'
+import { Button } from './Button'
 import { AuthContext } from '../contexts'
 
 const Wrapper = styled(Paper)`

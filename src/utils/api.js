@@ -32,6 +32,6 @@ export const updateContact = (data) => {
 
 export const fetchLogin = (data) => {
   return fetch(
-    `http://localhost:4000/users?login_like=${data.login}&password_like=${data.password}`,
+    `http://localhost:4000/users?login=${data.login}&password=${data.password}`,
   ).then((x) => x.json())
 }

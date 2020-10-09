@@ -1,7 +1,7 @@
 import React, { memo, useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import { useLocalStorage } from 'react-use'
-import { useMutation, useQueryCache } from 'react-query'
+import { useMutation } from 'react-query'
 import { fetchLogin } from '../utils'
 
 const AuthContext = React.createContext({})
@@ -24,6 +24,9 @@ const AuthProvider = memo(({ children }) => {
       } else {
         setError('Login or password is wrong')
       }
+    },
+    onError: () => {
+      setError('Server Error')
     },
   })
 

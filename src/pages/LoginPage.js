@@ -1,23 +1,21 @@
 import React, { useContext, useState } from 'react'
 import styled from 'styled-components/macro'
-import Container from '@material-ui/core/Container'
+import { Paper, Container } from '@material-ui/core'
 import { Button, Input } from '../components'
-import { useMutation, useQueryCache } from 'react-query'
-import { addNewContact, fetchLogin } from '../utils'
-import { useHistory } from 'react-router-dom'
 import { AuthContext } from '../contexts'
 
-const Content = styled.div`
+const Content = styled(Paper)`
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  width: 500px;
+  max-width: 100%;
   border: 3px solid gold;
   border-radius: 15px;
   padding-bottom: 40px;
   margin: 50px auto;
   overflow: hidden;
-  width: 50%;
 `
 const Header = styled.div`
   display: flex;
@@ -73,7 +71,7 @@ export const LoginPage = () => {
             onChange={(event) => onChange(event)}
           />
         </StyledForm>
-        <Button active onClick={handleLogin}>
+        <Button active disabled={!values.login || !values.password} onClick={handleLogin}>
           Login
         </Button>
         <Error> {error}</Error>

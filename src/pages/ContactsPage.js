@@ -1,20 +1,19 @@
 import React, { useCallback, useState } from 'react'
-import styled from 'styled-components'
-import Container from '@material-ui/core/Container'
-import { AddContactModal, ContactCard, Input, PageHeader } from '../components'
-import { useMutation, useQuery, useQueryCache } from 'react-query'
-import { addNewContact, fetchContactList } from '../utils'
+import styled from 'styled-components/macro'
+import { useQuery } from 'react-query'
+import { Container, Paper, Box, CircularProgress } from '@material-ui/core'
 import AddIcon from '@material-ui/icons/Add'
 import SentimentVeryDissatisfiedIcon from '@material-ui/icons/SentimentVeryDissatisfied'
-import CircularProgress from '@material-ui/core/CircularProgress'
-import Box from '@material-ui/core/Box'
-import { Paper } from '@material-ui/core'
+import { AddContactModal, ContactCard, Input, PageHeader } from '../components'
+import { fetchContactList } from '../utils'
+import { useDebounce } from 'react-use'
 
 const Content = styled(Paper)`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
+  min-height: 350px;
   border: 1px solid gold;
   border-radius: 15px;
   padding-bottom: 20px;
@@ -41,19 +40,31 @@ const Wrapper = styled.div`
   align-items: center;
   margin: 50px auto;
 `
+
 export const ContactsPage = () => {
   const [search, setSearch] = useState('')
+  const [inputValue, setInputValue] = useState('')
   const getContacts = useCallback(() => fetchContactList(search), [search])
 
-  const { isLoading, isError, data, error } = useQuery(['contacts', search], getContacts)
+  const { isLoading, data } = useQuery(['contacts', search], getContacts)
   const [isModalOpen, setIsModalOpen] = useState(false)
+
+  useDebounce(
+    () => {
+      if (inputValue !== search) {
+        setSearch(inputValue)
+      }
+    },
+    500,
+    [inputValue],
+  )
 
   const handleIsModalOpen = () => {
     setIsModalOpen(!isModalOpen)
   }
 
   const searchChange = (event) => {
-    setSearch(event.target.value)
+    setInputValue(event.target.value)
   }
   return (
     <PageHeader>
@@ -65,7 +76,7 @@ export const ContactsPage = () => {
           </Header>
           <Box mt={2}>
             <Input
-              value={search}
+              value={inputValue}
               active
               variant="outlined"
               placeholder="Search"
@@ -78,7 +89,7 @@ export const ContactsPage = () => {
               <CircularProgress />
             </Wrapper>
           )}
-          {data && data.length === 0 && (
+          {data && !data.length && (
             <Wrapper>
               <SentimentVeryDissatisfiedIcon fontSize="large" />
               <Title>You don't have any contacts.</Title>

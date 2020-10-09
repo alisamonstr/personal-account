@@ -1,5 +1,5 @@
 import React from 'react'
-import styled from 'styled-components'
+import styled from 'styled-components/macro'
 
 const StyledButton = styled.button`
   background: ${(p) => (p.active ? 'pink' : 'gold')};
@@ -15,9 +15,9 @@ const StyledButton = styled.button`
   outline: none;
 `
 
-export const Button = ({ active, onClick, children, className }) => {
+export const Button = ({ active, onClick, children, className, ...props }) => {
   return (
-    <StyledButton active={active} onClick={onClick} className={className}>
+    <StyledButton active={active} onClick={onClick} className={className} {...props}>
       {children}
     </StyledButton>
   )
