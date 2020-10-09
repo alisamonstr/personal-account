@@ -78,7 +78,7 @@ export const ContactCard = ({ firstName, secondName, phone, email, id }) => {
         <CloseIcon onClick={() => contactDelete(id)} />
       </ButtonWrapper>
       <Wrapper>
-        <Image />
+        <Image id={id} />
         <StyledForm>
           <Input
             id="firstName"
